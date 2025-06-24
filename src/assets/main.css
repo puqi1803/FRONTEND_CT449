@@ -33,3 +33,11 @@ a,
     padding: 0 2rem;
   }
 }
+
+.badge.badge-warning {
+  background-color: orange;
+  color: black;
+  padding: 4px 8px;
+  border-radius: 5px;
+  font-size: 0.875rem;
+}
