@@ -32,6 +32,20 @@
         </div>
 
         <div class="form-group">
+            <label><strong>Chọn sở thích:</strong></label>
+            <div v-for="option in interestOptions" :key="option" class="form-check">
+                <input
+                class="form-check-input"
+                type="checkbox"
+                :value="option"
+                v-model="contactLocal.interests"
+                :id="option"
+                />
+                <label class="form-check-label" :for="option">{{ option }}</label>
+            </div>
+        </div>
+
+        <div class="form-group">
             <button class="btn btn-primary">Lưu</button>
             <button v-if="contactLocal._id" type="button" class="ml-2 btn btn-danger" @click="deleteContact">Xóa</button>
             <button type="button" class="ml-2 btn btn-danger" @click="Cancel">Thoát</button>
@@ -69,14 +83,15 @@
                 .string()
                 .matches(
                 /((09|03|07|08|05)+([0-9]{8})\b)/g,
-                "Số điện thoại không hợp lệ."
-                ),
+                "Số điện thoại không hợp lệ."),
             });
             return {
-                // Chúng ta sẽ không muốn hiệu chỉnh props, nên tạo biến cục bộ
-                // contactLocal để liên kết với các input trên form
-                contactLocal: this.contact,
+                contactLocal: {
+                    ...this.contact,
+                    interests: this.contact.interests || [],
+                },
                 contactFormSchema,
+                interestOptions: ["Bóng đá", "Du lịch", "Đọc sách", "Xem phim", "Nấu ăn"],
             };
         },
         methods: {

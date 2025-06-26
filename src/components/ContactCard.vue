@@ -25,6 +25,15 @@
             <i v-if="contact.favorite" class="fas fa-check"></i>
             <i v-else class="fas fa-times"></i>
         </div>
+        <div class="p-1">
+            <strong>Sở thích: </strong>
+            <span v-if="contact.interests && contact.interests.length">
+                {{ contact.interests.join(', ') }}
+            </span>
+            <span v-else>
+                Không có
+            </span>
+        </div>
     </div>
 </template>
 
